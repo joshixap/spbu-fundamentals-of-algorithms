@@ -14,7 +14,7 @@ class GraphTraversal(ABC):
         self.G: AnyNxGraph = G
         self.visited: set[Any] = set()
         self.reset()
-        
+
     def reset(self):
         self.visited.clear()
 
@@ -39,7 +39,11 @@ class DfsViaRecursion(GraphTraversal):
         print(f"Postvisit {node}")
     def run(self, node: Any) -> None:
         self.previsit(node)
+<<<<<<< HEAD
         self.visited(node)
+=======
+        self.visited.add(node)
+>>>>>>> c73b00f ([dfs_with_postvisit] create && [dijkstra.run()] was updated)
 
         for n_neigh in G.neighbors(node):
             if n_neigh not in self.visited:
@@ -103,12 +107,26 @@ class DfsViaLifoQueueWithPrinting(DfsViaLifoQueue):
         pass
 
 
-class TopologicalSorting(DfsViaLifoQueue):
-    ##########################
-    ### PUT YOUR CODE HERE ###
-    #########################
-    pass
+class TopologicalSorting(DfsViaRecursion):
+    def __init__(self, G: AnyNxGraph)->None:
+        self.sorted_nodes: deque = deque()
+        super().__init__(G)
 
+    def reset(self) -> None:
+        super().reset()
+        self.sorted_nodes.clear()
+
+    def sort(self, node: Any) -> list[Any]:
+        self.run(node)
+        sorted_nodes = list(self.sorted_nodes)
+        self.reset()
+        return sorted_nodes
+
+    def previsit(self, node: Any, **params) -> None:
+        pass
+
+    def postvisit(self, node: Any, **params) -> None:
+        self.sorted_nodes.appendleft(node)
 
 
 if __name__ == "__main__":
