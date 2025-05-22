@@ -38,20 +38,8 @@ class DfsViaRecursion(GraphTraversal):
     def postvisit(self, node: Any, **params) -> None:
         print(f"Postvisit {node}")
     def run(self, node: Any) -> None:
-<<<<<<< HEAD
-<<<<<<< HEAD
-        self.previsit(node)
-<<<<<<< HEAD
-        self.visited(node)
-=======
-        self.visited.add(node)
->>>>>>> c73b00f ([dfs_with_postvisit] create && [dijkstra.run()] was updated)
-=======
->>>>>>> 19d698d (added practicums)
-=======
         self.previsit(node)
         self.visited.add(node)
->>>>>>> 66bfffe (Revert "added practicums")
 
         for n_neigh in G.neighbors(node):
             if n_neigh not in self.visited:
