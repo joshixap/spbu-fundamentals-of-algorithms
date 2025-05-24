@@ -26,7 +26,7 @@ class DijkstraAlgorithm(GraphTraversal):
     def postvisit(self, node: Any, **params) -> None:
         pass
 
-    def run(self, G, node: Any) -> None:
+    def run(self, node: Any) -> None:
         distances = {n: float('inf') for n in self.G.nodes}
         distances[node] = 0
         queue = PriorityQueue()
