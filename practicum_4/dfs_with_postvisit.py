@@ -34,7 +34,7 @@ class DfsViaLifoQueueWithPostvisit(GraphTraversal):
         print(f"Previsit {node}")
     def postvisit(self, node: Any, **params) -> None:
         print(f"Postvisit {node}")
-    def run(self, node: Any) -> None:
+    def run(self, G, node: Any) -> None:
         stack = [node]
         visited_postvisit = set()
 
