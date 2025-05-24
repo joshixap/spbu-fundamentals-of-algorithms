@@ -26,8 +26,8 @@ class DijkstraAlgorithm(GraphTraversal):
     def postvisit(self, node: Any, **params) -> None:
         pass
 
-    def run(self, node: Any) -> None:
-        distances = {n: float('inf') for n in G.nodes}
+    def run(self, G, node: Any) -> None:
+        distances = {n: float('inf') for n in self.G.nodes}
         distances[node] = 0
         queue = PriorityQueue()
         queue.put((0, node))
@@ -36,7 +36,7 @@ class DijkstraAlgorithm(GraphTraversal):
         while not queue.empty():
             current_distance, current_node = queue.get()
 
-            for n_neigh in G.neighbors(current_node):
+            for n_neigh in self.G.neighbors(current_node):
                 weight = self.G.edges[current_node, n_neigh].get('weight', 1)
                 new_distance = current_distance + weight
 
